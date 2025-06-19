@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.lukaszwodniak</groupId>
 	<artifactId>samochodowo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<name>samochodowo</name>
 	<description>Server side app for samochodowo project (refreshed version app from 2022)</description>
 	<url/>
