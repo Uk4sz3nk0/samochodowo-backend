@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
-          distribution: 'liberica'
+          distribution: 'temurin'
 
       - name: Test app as prod
         run: mvn clean install -Dspring.profiles.active=prod
