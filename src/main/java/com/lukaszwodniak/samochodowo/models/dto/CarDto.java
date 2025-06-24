@@ -11,7 +11,7 @@ import java.util.UUID;
  * @author Łukasz Wodniak
  */
 
-public record CarDto(UUID id, String manufacturer, String model, int engineSize, int power,
-                     String shortDescription, long distance, String fuel, String gearbox, int productionYear,
+public record CarDto(UUID id, String manufacturer, String model, short engineSize, short power,
+                     String shortDescription, long distance, String fuel, String gearbox, short productionYear,
                      String city, String voivodeship, BigDecimal price, String publisherType) {
 }
