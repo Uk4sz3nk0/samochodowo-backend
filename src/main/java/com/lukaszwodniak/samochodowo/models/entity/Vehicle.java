@@ -5,6 +5,7 @@ import com.lukaszwodniak.samochodowo.enums.Gearbox;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,10 +55,9 @@ public abstract class Vehicle {
     private short engineSize;
     @Column(nullable = false)
     private short horsePower;
-    @Max(9)
+    @Size(max = 9)
     private String licensePlate;
-    @Min(15)
-    @Max(20)
+    @Size(min = 15, max = 20)
     @Column(nullable = false)
     private String vin;
     @Column(nullable = false)

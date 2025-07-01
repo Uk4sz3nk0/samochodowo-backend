@@ -1,15 +1,14 @@
 package com.lukaszwodniak.samochodowo.models.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.BatchSize;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -32,12 +31,27 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Min(1)
-    @Max(50)
+    @Size(min = 1, max = 50)
     @NotBlank(message = "Name is mandatory")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
+
+    @Size(min = 1, max = 50)
+    private String generation;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, generation);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass() != this.getClass()) return false;
+        var other = (Model) obj;
+        return this.name.equals(other.name) && this.generation.equals(other.generation) && this.manufacturer.getId()
+                .equals(other.manufacturer.getId());
+    }
 }

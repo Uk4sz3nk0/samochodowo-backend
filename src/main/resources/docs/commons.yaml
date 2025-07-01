@@ -1,0 +1,30 @@
+openapi: 3.1.0
+info:
+  title: Commons
+  description: Commons
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+
+components:
+  schemas:
+    Page:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { }
+        pageNumber:
+          type: integer
+        pageSize:
+          type: integer
+        totalElements:
+          type: integer
+    ApiErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
