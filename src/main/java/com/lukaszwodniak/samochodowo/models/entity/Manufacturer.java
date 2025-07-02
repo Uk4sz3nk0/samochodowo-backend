@@ -1,9 +1,8 @@
 package com.lukaszwodniak.samochodowo.models.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,12 +32,11 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Min(3)
-    @Max(60)
+    @Size(min = 2, max = 60)
     @NotBlank(message = "Name is mandatory")
     private String name;
 
     @BatchSize(size = 20)
-    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Model> models;
 }
