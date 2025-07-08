@@ -27,6 +27,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class ModelsUnitTests extends BaseUnitTest {
 
+    private static final String TOYOTA_MANUFACTURER = "Toyota";
+    private static final String AYGO_MODEL = "Aygo";
+
     @Mock
     ModelsRepository modelsRepository;
 
@@ -35,7 +38,7 @@ public class ModelsUnitTests extends BaseUnitTest {
 
     @Test
     void shouldFind5Models() {
-        Manufacturer manufacturer = generateManufacturer(UUID.randomUUID(), "Toyota");
+        Manufacturer manufacturer = generateManufacturer(UUID.randomUUID(), TOYOTA_MANUFACTURER);
         List<Model> models = new ArrayList<>(getMockModels(manufacturer)).stream()
                 .sorted(Comparator.comparing(Model::getName))
                 .toList();
@@ -55,20 +58,20 @@ public class ModelsUnitTests extends BaseUnitTest {
 
     @Test
     void shouldFindAygoModels() {
-        Manufacturer toyota = generateManufacturer(UUID.randomUUID(), "Toyota");
+        Manufacturer toyota = generateManufacturer(UUID.randomUUID(), TOYOTA_MANUFACTURER);
         List<Model> models = new ArrayList<>(getMockModels(toyota)).stream()
                 .filter(model -> model.getName()
                         .toLowerCase()
-                        .contains("aygo"))
+                        .contains(AYGO_MODEL.toLowerCase()))
                 .toList();
         PageRequest pageable = PageRequest.of(0, 2);
         Page<Model> pagedModels = new PageImpl<>(models, pageable, pageable.getPageSize());
 
-        when(modelsRepository.findAllByNameContainingIgnoreCase(eq("aygo"), any(Pageable.class))).thenReturn(pagedModels);
+        when(modelsRepository.findAllByNameContainingIgnoreCase(eq(AYGO_MODEL), any(Pageable.class))).thenReturn(pagedModels);
 
-        Page<Model> results = modelsService.getModels(pageable, "aygo");
+        Page<Model> results = modelsService.getModels(pageable, AYGO_MODEL);
         assertEquals(2, results.getTotalElements());
-        assertEquals("Aygo", results.getContent()
+        assertEquals(AYGO_MODEL, results.getContent()
                 .getFirst()
                 .getName());
         assertEquals("Aygo X", results.getContent()
