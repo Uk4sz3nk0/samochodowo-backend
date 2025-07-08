@@ -1,7 +1,5 @@
 package com.lukaszwodniak.samochodowo.models.dto;
 
-import com.lukaszwodniak.samochodowo.enums.ErrorResponseCode;
-
 /**
  * ApiErrorResponse
  * <br>
@@ -10,5 +8,5 @@ import com.lukaszwodniak.samochodowo.enums.ErrorResponseCode;
  * @author Łukasz Wodniak
  */
 
-public record ApiErrorResponse(ErrorResponseCode code, String message) {
+public record ApiErrorResponse(int code, String message) {
 }

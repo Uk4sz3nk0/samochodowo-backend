@@ -25,7 +25,7 @@ public class GlobalErrorHandler {
     @ExceptionHandler(NoSuchManufacturerException.class)
     public ResponseEntity<ApiErrorResponse> handleNoSuchManufacturerException(final NoSuchManufacturerException e) {
         log.error("Handling NoSuchManufacturerException", e);
-        var response = new ApiErrorResponse(ErrorResponseCode.NO_SUCH_MANUFACTURER, e.getLocalizedMessage());
+        var response = new ApiErrorResponse(ErrorResponseCode.NO_SUCH_MANUFACTURER.code(), e.getLocalizedMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
@@ -33,7 +33,7 @@ public class GlobalErrorHandler {
     @ExceptionHandler(ManufacturerAlreadyExistsException.class)
     public ResponseEntity<ApiErrorResponse> handleManufacturerAlreadyExistsException(final ManufacturerAlreadyExistsException e) {
         log.error("Handling ManufacturerAlreadyExistsException", e);
-        var response = new ApiErrorResponse(ErrorResponseCode.MANUFACTURER_ALREADY_EXISTS, e.getLocalizedMessage());
+        var response = new ApiErrorResponse(ErrorResponseCode.MANUFACTURER_ALREADY_EXISTS.code(), e.getLocalizedMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }

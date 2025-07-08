@@ -23,7 +23,7 @@ public class ModelsExceptionHandler {
     @ExceptionHandler(NoSuchModelException.class)
     public ResponseEntity<ApiErrorResponse> handleNoSuchModelException(final NoSuchModelException e) {
         log.error("Handling NoSuchModelException", e);
-        var response = new ApiErrorResponse(ErrorResponseCode.NO_SUCH_MODEL, e.getLocalizedMessage());
+        var response = new ApiErrorResponse(ErrorResponseCode.NO_SUCH_MODEL.code(), e.getLocalizedMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(response);
     }
@@ -31,7 +31,7 @@ public class ModelsExceptionHandler {
     @ExceptionHandler(ModelAlreadyExistsException.class)
     public ResponseEntity<ApiErrorResponse> handleModelAlreadyExistsException(final ModelAlreadyExistsException e) {
         log.error("Handling ModelAlreadyExistsException", e);
-        var response = new ApiErrorResponse(ErrorResponseCode.MODEL_ALREADY_EXISTS, e.getLocalizedMessage());
+        var response = new ApiErrorResponse(ErrorResponseCode.MODEL_ALREADY_EXISTS.code(), e.getLocalizedMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(response);
     }
