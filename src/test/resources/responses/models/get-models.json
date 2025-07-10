@@ -1,0 +1,59 @@
+{
+  "content": [
+    {
+      "id": "cbb889de-e712-4bf6-9260-7fb7865cb0d2",
+      "name": "Focus",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK7"
+    },
+    {
+      "id": "d3fc1dd2-c9d0-43a1-9b8a-8d3dfcd25c1f",
+      "name": "F-150",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK2"
+    },
+    {
+      "id": "edb606ec-2b03-408b-abe5-94907b8929d9",
+      "name": "Raptor",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK4"
+    },
+    {
+      "id": "4b2fb0e9-5080-4c7c-8ce1-d3c84ec82dd1",
+      "name": "Explorer",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK3"
+    },
+    {
+      "id": "4df86ffa-848e-45e1-a50f-5f3e34de01b6",
+      "name": "Mondeo",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK5"
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 10,
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": true,
+  "totalElements": 5,
+  "totalPages": 1,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "numberOfElements": 5,
+  "first": true,
+  "empty": false
+}
