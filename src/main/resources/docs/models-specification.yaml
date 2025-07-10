@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: ModelsSpecification
+  description: Api documentation for models in Samochodowo
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /models:
+    get:
+      description: |
+        Endpoint used for getting models
+      tags:
+        - "Models"
+      operationId: getModels
+      parameters:
+        - name: page
+          in: query
+          required: false
+          allowEmptyValue: true
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          required: false
+          allowEmptyValue: true
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Ok. Successful response will return paged models
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedModels"
+    post:
+      description: |
+        Endpoint used for adding new model
+      tags:
+        - "Models"
+      operationId: addModel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelDto"
+      responses:
+        "200":
+          description: OK. Successful response will return added model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelDto"
+    patch:
+      description: |
+        Endpoint used for updating models
+      tags:
+        - "Models"
+      operationId: updateModel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelDto"
+      responses:
+        "200":
+          description: Ok. Successful response will return updated model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelDto"
+        "404":
+          description: Error. Model with given id not exists or given id is null
+  /models/{id}:
+    get:
+      description: |
+        Endpoint used for getting specified model by id
+      tags:
+        - "Models"
+      operationId: getModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Ok. Successful response will return ok status with specified model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelDto"
+    delete:
+      description: |
+        Endpoint used for deleting model specified by id
+      tags:
+        - "Models"
+      operationId: deleteModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            format: uuid
+            example: "437177d6-5c3c-4a6d-b81c-22785373a922"
+      responses:
+        "204":
+          description: Ok. Successful delete operation will return 204 status code
+components:
+  schemas:
+    PagedModels:
+      type: object
+      allOf:
+        - $ref: "/commons.yaml#/components/schemas/Page"
+          type: object
+          properties:
+            content:
+              type: array
+              items:
+                $ref: "#/components/schemas/ModelDto"
+    ModelDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+        generation:
+          type: string
+          minLength: 1
+          maxLength: 50
+        manufacturerId:
+          type: string
+          format: uuid

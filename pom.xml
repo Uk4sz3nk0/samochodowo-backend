@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.lukaszwodniak</groupId>
 	<artifactId>samochodowo</artifactId>
-	<version>0.4.0-SNAPSHOT</version>
+	<version>0.5.0-SNAPSHOT</version>
 	<name>samochodowo</name>
 	<description>Server side app for samochodowo project (refreshed version app from 2022)</description>
 	<url/>
@@ -78,6 +78,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.19.0</version>
 		</dependency>
 	</dependencies>
 
