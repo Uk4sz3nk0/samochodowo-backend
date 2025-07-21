@@ -1,5 +1,6 @@
 package com.lukaszwodniak.samochodowo.integration;
 
+import com.lukaszwodniak.samochodowo.enums.ErrorResponseCode;
 import com.lukaszwodniak.samochodowo.models.entity.Manufacturer;
 import com.lukaszwodniak.samochodowo.models.entity.Model;
 import org.junit.jupiter.api.Test;
@@ -99,6 +100,17 @@ public class ModelsIntegrationTests extends BaseIntegrationTests {
 
     @Test
     void shouldNotAddNewModel() throws Exception {
+        var modelName = "Escort";
+        var firstGen = "I";
+        var manufacturer = givenManufacturer(BASE_ID, FORD_MANUFACTURER);
+        var escortModel = new Model(null, modelName, manufacturer, firstGen);
+        given(modelsRepository.existsByNameIgnoreCaseAndManufacturerAndGenerationIgnoreCase(escortModel.getName(), manufacturer, firstGen)).willReturn(true);
+
+        mockMvc.perform(post("/models").contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(getRequest(DIRECTORY, "add-new-model-request.json")))
+                .andExpect(status().isConflict())
+                .andExpect(content().json(getResponse(DIRECTORY, "add-new-model-error-response.json")))
+                .andExpect(jsonPath("$.code").value(ErrorResponseCode.MODEL_ALREADY_EXISTS.code()));
     }
 
     @Test
