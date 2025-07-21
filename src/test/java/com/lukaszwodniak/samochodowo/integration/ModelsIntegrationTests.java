@@ -78,19 +78,23 @@ public class ModelsIntegrationTests extends BaseIntegrationTests {
     @Test
     void shouldAddNewModel() throws Exception {
         var modelName = "Escort";
+        var firstGen = "I";
         var manufacturer = givenManufacturer(BASE_ID, FORD_MANUFACTURER);
-        var escortModel = new Model(null, modelName, manufacturer, "I");
-        var addedModel = new Model(SINGLE_MODEL_ID, modelName, manufacturer, "I");
+        var escortModel = new Model(null, modelName, manufacturer, firstGen);
+        var addedModel = new Model(SINGLE_MODEL_ID, modelName, manufacturer, firstGen);
 
 
         given(modelsRepository.save(escortModel)).willReturn(addedModel);
-        given(modelsRepository.existsByNameIgnoreCaseAndManufacturerAndGenerationIgnoreCase(escortModel.getName(), manufacturer, "I")).willReturn(false);
+        given(modelsRepository.existsByNameIgnoreCaseAndManufacturerAndGenerationIgnoreCase(escortModel.getName(), manufacturer, firstGen)).willReturn(false);
 
         mockMvc.perform(post("/models").contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(getRequest(DIRECTORY, "add-new-model-request.json")))
                 .andExpect(status().isCreated())
                 .andExpect(content().json(getResponse(DIRECTORY, "add-new-model-response.json")))
-                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
+                .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.name").value(modelName))
+                .andExpect(jsonPath("$.id").value(SINGLE_MODEL_ID.toString()))
+                .andExpect(jsonPath("$.generation").value(firstGen));
     }
 
     @Test
