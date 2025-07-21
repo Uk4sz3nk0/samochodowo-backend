@@ -1,0 +1,41 @@
+{
+  "content": [
+    {
+      "id": "cbb889de-e712-4bf6-9260-7fb7865cb0d2",
+      "name": "Focus",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK7"
+    },
+    {
+      "id": "edb606ec-2b03-408b-abe5-94907b8929d9",
+      "name": "Raptor",
+      "manufacturerId": "949bb4ec-9c16-4524-82ab-7ddacb3580a7",
+      "generation": "MK4"
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 10,
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": true,
+  "totalElements": 2,
+  "totalPages": 1,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "numberOfElements": 2,
+  "first": true,
+  "empty": false
+}
